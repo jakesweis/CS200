@@ -1,92 +1,80 @@
-///////////////////////////////////////////////////////////////////////////////
-// Config.java Fall 2018
-//
-// This file contains constants used within your Eliza program.
-// This file will not be handed in, because testing Config.java files will 
-// be used to test your program. Your code must reference these constant 
-// values by the names defined below and not the values themselves.
-//
-///////////////////////////////////////////////////////////////////////////////
-
+/**
+ * This class contains the constants used in the Sokoban program. These constants may be changed
+ * when testing. So, your program should use the constants, not the values.
+ * 
+ * @author Marc Renault
+ */
 public class Config {
-    
-    /**  
-     * A debugging technique is to add statements like the following
-     * at key places in your program:
-     *    if (Config.DEBUG) { System.out.println("value=" + value); }
-     * Then you can turn on or off all these statements simply by
-     * changing the value of DEBUG here.
-     */
-    static final boolean DEBUG = true;
-    
+
     /**
-     * The filename extension for files with lists of key words and responses.
+     * Character values for displaying the different statuses of the game board cells.
      */
-    static final String RESPONSE_FILE_EXTENSION = ".rsp";
-    
+    public static final char EMPTY_CHAR = ' '; // Empty character
+    public static final char BOX_CHAR = '='; // Box character
+    public static final char WALL_CHAR   = '#'; // Wall character
+    public static final char WORKER_CHAR  = '@'; // Worker character
+    public static final char GOAL_CHAR  = '.'; // Goal character
+    public static final char BOX_GOAL_CHAR  = '*'; // Box on a goal character
+    public static final char WORK_GOAL_CHAR  = '+'; // Worker on a goal character
+
     /**
-     * If the user input contains any of these words in their own phrase
-     * then Eliza ends.
+     * Constants for the random processes.
      */
-    static final String [] QUIT_WORDS = {"bye","goodbye","quit", "seeya"}; 
-    
-    /** 
-     * In user input, if the first word is found it is replaced with 
-     * the second word. For example "i'm" is replaced with "i am".
+    public static final long SEED            = 1234; // The random seed
+
+    /**
+     * Initial configuration of the levels. Note that the location of the goals are defined in the 
+     * GOALS array which is a parallel array to LEVELS.
      */
-    static final String[][] INPUT_WORD_MAP = {
-            //from  => to
-            {"dont", "don't"},
-            {"cant", "cannot"},
-            {"can't", "cannot"},
-            {"want", "desire"},
-            {"need", "desire"},
-            {"noone", "nobody"},
-            {"everybody", "everyone"},
-            {"wont", "won't"},
-            {"recollect", "remember"},
-            {"dreamt", "dreamed"},
-            {"dreams", "dream"},
-            {"maybe", "perhaps"},
-            {"how", "what"},
-            {"when", "what"},
-            {"certainly", "yes"},
-            {"machine", "computer"},
-            {"computers", "computer"},
-            {"were", "was"},
-            {"you're", "you are"},
-            {"i'm", "i am"},
-            {"same", "alike"},
-            {"sorry", "apologize"},
-            {"aren't", "are not"},
-            {"mom", "mother"},
-            {"dad", "father"}
+    public static final char[][][] LEVELS = {
+        {
+            //{' ', ' ', ' ', ' ', ' '},
+            //{' ', ' ', ' ', ' ', ' '},
+            //{' ', ' ', ' ', '=', ' '},
+            //{' ', ' ', ' ', ' ', ' '},
+            //{' ', ' ', ' ', ' ', '@'}
+            {EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR},
+            {EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR},
+            {EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, BOX_CHAR, EMPTY_CHAR},
+            {EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR},
+            {EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, WORKER_CHAR}
+
+        },
+        {
+            //{' ', ' ', ' ', '#', ' ', ' ', ' '},
+            //{' ', ' ', ' ', '#', '=', ' ', ' '},
+            //{' ', '#', '#', '#', ' ', ' ', '='},
+            //{' ', '#', ' ', ' ', '=', ' ', '=', ' '},
+            //{'#', '#', ' ', '#', ' ', '#', '#', ' ', '#', ' ', ' ', ' ', '#', '#', '#', '#', '#'},
+            //{' ', ' ', ' ', '#', ' ', '#', '#', ' ', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' '},
+            //{' ', '=', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            //{'#', '#', '#', '#', ' ', '#', '#', '#', ' ', '#', '@', '#', '#', ' ', ' ', ' ', ' '},
+            //{' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#'}
+            {EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, WALL_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR},
+            {EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, WALL_CHAR, BOX_CHAR, EMPTY_CHAR, EMPTY_CHAR},
+            {EMPTY_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, EMPTY_CHAR, EMPTY_CHAR, BOX_CHAR},
+            {EMPTY_CHAR, WALL_CHAR, EMPTY_CHAR, EMPTY_CHAR, BOX_CHAR, EMPTY_CHAR, BOX_CHAR, EMPTY_CHAR},
+            {WALL_CHAR, WALL_CHAR, EMPTY_CHAR, WALL_CHAR, EMPTY_CHAR, WALL_CHAR, WALL_CHAR, EMPTY_CHAR, WALL_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR},
+            {EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, WALL_CHAR, EMPTY_CHAR, WALL_CHAR, WALL_CHAR, EMPTY_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR},
+            {EMPTY_CHAR, BOX_CHAR, EMPTY_CHAR, EMPTY_CHAR, BOX_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR},
+            {WALL_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, EMPTY_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, EMPTY_CHAR, WALL_CHAR, WORKER_CHAR, WALL_CHAR, WALL_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR},
+            {EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, WALL_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR, WALL_CHAR}
+
+        }
     };
 
-    /** 
-     * Pronoun pairs for echoing phrases back to a user.
-     */
-    static final String[][] PRONOUN_MAP = {
-        {"am", "are"},
-        {"your", "my"},
-        {"me", "you"},
-        {"myself", "yourself"},
-        {"yourself", "myself"},
-        {"i", "you"},
-        {"you", "I"},
-        {"my", "your"},
-        {"i'm", "you are"}      
-    };
-    
     /**
-     * When the user input doesn't match any of the keyword patterns in the 
-     * response table then this response is selected.
+     * Position of the goals for each level. Every pair of values represents the row and column of 
+     * a goal. This is a parallel array to LEVELS.
      */
-    static final String NO_MATCH_RESPONSE = "Please go on."; 
-    
-    /** 
-     * Some responses are randomly chosen from a list. This seed is used
-     * to make those choices reproducible for testing purposes. 
-     */ 
-    static final int SEED = 123;
+    public static final int[][] GOALS = { {2,2}, {5, 15, 6, 15, 7, 15, 5, 16, 6, 16, 7, 16} };
+
+    /**
+     * The characters for the different movement directions and for quitting a game.
+     */
+    public static final char UP_CHAR = '8';
+    public static final char DOWN_CHAR = '2';
+    public static final char LEFT_CHAR = '4';
+    public static final char RIGHT_CHAR = '6';
+    public static final char QUIT_CHAR = 'q';
 }
